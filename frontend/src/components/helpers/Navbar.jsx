@@ -3,6 +3,7 @@ import Home from "../pages/Home";
 import CreateProduct from "../pages/CreateProduct";
 import Products from "../pages/Products";
 import ProductEdit from "../pages/ProductEdit";
+import SingleProduct from "./../pages/SingleProduct";
 
 const Navbar = () => {
   return (
@@ -17,15 +18,13 @@ const Navbar = () => {
               <li className='m-2 p-2 bg-red-500 hover:bg-red-700 hover:text-white text-black rounded-md'>
                 <Link to='/products'>Products</Link>
               </li>
-              <li className='m-2 p-2 bg-red-500 hover:bg-red-700 hover:text-white text-black rounded-md'>
-                <Link to='/create-product'>Create Product</Link>
-              </li>
             </ul>
           </nav>
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/products' element={<Products />} />
             <Route path='/products/create-product' element={<CreateProduct />} />
+            <Route path='/products/:id' element={<SingleProduct />} />
             <Route path='/products/:id/edit' element={<ProductEdit />} />
           </Routes>
         </div>

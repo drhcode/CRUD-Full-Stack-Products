@@ -75,7 +75,7 @@ export const ProductProvider = ({ children }) => {
         price: apiProduct.price,
       });
     } catch (error) {
-      setErrors(errors.data.data);
+      setErrors(error);
     }
   };
 

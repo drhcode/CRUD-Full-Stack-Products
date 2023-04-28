@@ -1,19 +1,33 @@
 import PropTypes from "prop-types";
+import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
+import ProductContext from "../context/ProductContext";
 
-const SingleProduct = ({ product }) => {
+const SingleProduct = () => {
+  const { formValues, getProduct } = useContext(ProductContext);
+
+  const { product } = getProduct();
+
   return (
     <>
       <>
-        <div className='flex items-center justify-center min-h-screen bg-gradient-to-br'>
+        <div className='flex items-center justify-center pt-10 bg-gradient-to-br'>
           <div className='w-full max-w-md  mx-auto bg-white rounded-3xl shadow-xl overflow-hidden'>
             <div className='max-w-lg mx-auto'>
-              <div className='h-[236px]'></div>
+              <div className='h-[236px]'>
+                <img
+                  className='w-full'
+                  src='https://images.unsplash.com/photo-1560343090-f0409e92791a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=928&q=80'
+                  alt=''
+                />
+              </div>
               <div className='p-4 sm:p-6'>
                 <p className='font-bold text-gray-700 text-lg leading-7 mb-1'>{product.name}</p>
                 <div className='flex flex-row'>
-                  <p className='text-[#3C3C4399] text-[17px] mr-2 line-through'>{product.price}</p>
-                  <p className='text-[17px] font-bold text-[#0FB478]'>MVR 700</p>
+                  <p className='text-white text-sm mr-2 bg-red-400 p-1 rounded-md'>
+                    {product.name}
+                  </p>
+                  <p className='text-[17px] font-bold text-[#0FB478]'>{product.price} €</p>
                 </div>
                 <p className='text-[#7C7C80] font-[15px] mt-6'>{product.description}</p>
 
@@ -41,7 +55,7 @@ const SingleProduct = ({ product }) => {
 };
 
 SingleProduct.propTypes = {
-  product: PropTypes.string,
+  productItems: PropTypes.string,
 };
 
 export default SingleProduct;

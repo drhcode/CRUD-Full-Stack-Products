@@ -3,8 +3,9 @@ import PropTypes from "prop-types";
 import { useContext } from "react";
 import ProductContext from "../context/ProductContext";
 
-const ProductItem = ({ productItems }) => {
+const ProductItem = ({ product }) => {
   const { deleteProduct, updateProduct } = useContext(ProductContext);
+
   return (
     <>
       <tr>
@@ -18,21 +19,21 @@ const ProductItem = ({ productItems }) => {
               />
             </div>
             <div className='ml-3'>
-              <p className='text-gray-900 whitespace-no-wrap'>{productItems.name}</p>
+              <p className='text-gray-900 whitespace-no-wrap'>{product.name}</p>
               <p className='text-gray-600 whitespace-no-wrap'>000004</p>
             </div>
           </div>
         </td>
         <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-          <p className='text-gray-900 whitespace-no-wrap'>{productItems.price}</p>
+          <p className='text-gray-900 whitespace-no-wrap'>{product.price}</p>
           <p className='text-gray-600 whitespace-no-wrap'>USD</p>
         </td>
         <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-          <p className='text-gray-900 whitespace-no-wrap'>{productItems.quantity}</p>
+          <p className='text-gray-900 whitespace-no-wrap'>{product.quantity}</p>
           <p className='text-gray-600 whitespace-no-wrap'>In Stock</p>
         </td>
         <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-          <p className='text-gray-900 whitespace-no-wrap'>{productItems.description}</p>
+          <p className='text-gray-900 whitespace-no-wrap'>{product.description}</p>
         </td>
         <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
           <span className='relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight'>
@@ -40,19 +41,25 @@ const ProductItem = ({ productItems }) => {
               aria-hidden
               className='absolute inset-0 bg-green-200 opacity-50 rounded-full'
             ></span>
-            <span className='relative'>{productItems.type}</span>
+            <span className='relative'>{product.type}</span>
           </span>
         </td>
         <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm space-x-3'>
           <Link
-            to={`/products/${productItems.id}/edit`}
+            to={`/products/${product.id}`}
+            className='bg-red-500 text-white p-2 text-center rounded-md'
+          >
+            View
+          </Link>
+          <Link
+            to={`/products/${product.id}/edit`}
             onClick={() => updateProduct()}
             className='bg-green-500 text-white p-2 text-center rounded-md'
           >
             Edit
           </Link>
           <Link
-            onClick={() => deleteProduct(productItems.id)}
+            onClick={() => deleteProduct(product.id)}
             className='bg-red-500 text-white p-2 text-center rounded-md'
           >
             Delete
@@ -64,7 +71,7 @@ const ProductItem = ({ productItems }) => {
 };
 
 ProductItem.propTypes = {
-  productItems: PropTypes.object,
+  product: PropTypes.object,
 };
 
 export default ProductItem;
